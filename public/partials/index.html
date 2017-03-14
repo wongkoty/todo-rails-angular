@@ -2,6 +2,7 @@
   <div ng-repeat="list in home.lists" class="col-md-3">
     <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
     <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
+    <button ng-click="home.deleteList(list.list.id)">Delete</button>
   </div>
 </div>
 
