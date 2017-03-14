@@ -4,6 +4,10 @@ const port = 4000 || process.env.PORT;
 
 app.use(express.static('public'))
 
+app.use(function(req, res) {
+    res.sendfile(__dirname + '/public/index.html');
+});
+
 app.listen(port, () => {
   console.log(`on port ${port}`)
 })
