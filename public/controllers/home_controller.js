@@ -13,6 +13,7 @@ function HomeController($scope, $http, $state, $stateParams) {
   this.showList = showList;
 
   this.goList = goList;
+  this.goLists = goLists;
 
   function getLists() {
     console.log('getLists')
@@ -24,17 +25,14 @@ function HomeController($scope, $http, $state, $stateParams) {
       })
   }
 
-  function showList(listId) {
+  function showList() {
     console.log('show list')
     console.log($stateParams.listId)
-    console.log(listId)
     $http.get(`${server}/lists/${$stateParams.listId}`)
       .then(response => {
         console.log(response);
         self.list = response.data.list;
         self.todos = response.data.todos;
-        // console.log(self.lists);
-        // $state.go('showList', {listId: listId})
       })
   }
 
@@ -43,5 +41,8 @@ function HomeController($scope, $http, $state, $stateParams) {
     $state.go('showList', {listId: listId})
   }
 
-  getLists();
+  function goLists(){
+    self.getLists();
+    $state.go('home')
+  }
 }

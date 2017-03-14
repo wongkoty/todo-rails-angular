@@ -1,4 +1,10 @@
-<div ng-repeat="list in home.lists" class="col-md-3">
-  <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
-  <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
+<div ng-init="home.goLists()">
+  <div ng-repeat="list in home.lists" class="col-md-3">
+    <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
+    <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
+  </div>
 </div>
+
+
+<button>New List</button>
+
