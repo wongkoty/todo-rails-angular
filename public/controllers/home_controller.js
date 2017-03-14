@@ -6,14 +6,19 @@ function HomeController($scope, $http, $state, $stateParams) {
   this.lists = "";
   this.list = "";
   this.todos = "";
+  this.title = "";
 
 
   // Functions
   this.getLists = getLists;
   this.showList = showList;
+  this.postNewList = postNewList;
 
+
+  // state changes
   this.goList = goList;
   this.goLists = goLists;
+  this.goNewList = goNewList;
 
   function getLists() {
     console.log('getLists')
@@ -34,6 +39,23 @@ function HomeController($scope, $http, $state, $stateParams) {
         self.list = response.data.list;
         self.todos = response.data.todos;
       })
+  }
+
+  function postNewList() {
+    console.log('post new list')
+    // console.log(self.title);
+    const data = { title: self.title }
+    $http.post(`${server}/lists/`, data)
+      .then(response => {
+        console.log(response);
+        self.title = "";
+        $state.go('home');
+      })
+  }
+
+  function goNewList() {
+    console.log('new list');
+    $state.go('newList');
   }
 
   function goList(listId){

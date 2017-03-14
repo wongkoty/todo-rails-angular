@@ -14,8 +14,13 @@ function appRouter ($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/',
     templateUrl: '/partials/index.html'
   })
+  .state('newList', {
+    url: '/lists/new',
+    templateUrl: '/partials/lists/new.html',
+  })
   .state('showList', {
     url: '/lists/{listId}',
     templateUrl: '/partials/lists/show.html',
   });
+
 }
