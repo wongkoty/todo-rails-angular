@@ -13,6 +13,7 @@ function HomeController($scope, $http, $state, $stateParams) {
   this.getLists = getLists;
   this.showList = showList;
   this.postNewList = postNewList;
+  this.deleteList = deleteList;
 
 
   // state changes
@@ -50,6 +51,17 @@ function HomeController($scope, $http, $state, $stateParams) {
         console.log(response);
         self.title = "";
         $state.go('home');
+      })
+  }
+
+  function deleteList(listId) {
+    console.log('delete list');
+    $http.delete(`${server}/lists/${listId}`)
+      .then(response => {
+        console.log(response)
+        if (response.status == 200) {
+          self.lists = response.data.lists
+        }
       })
   }
 
