@@ -10,9 +10,9 @@ function HomeController($scope, $http) {
     console.log('test')
     $http.get(`${server}/lists`)
       .then(response => {
-        console.log(response);
-        self.lists = response.data;
-        // console.log(self.meow);
+        console.log(response.data.lists);
+        self.lists = response.data.lists;
+        console.log(self.lists);
       })
   }
 
