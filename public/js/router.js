@@ -9,8 +9,8 @@ function appRouter ($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: '/partials/index.html'
   })
-  .state('boardShow', {
-    url: '/boards/{boardId}',
-    templateUrl: '/partials/boards/show.html'
+  .state('showList', {
+    url: '/lists/{boardId}',
+    templateUrl: '/partials/lists/show.html'
   });
 }
