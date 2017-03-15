@@ -14,6 +14,7 @@ function HomeController($scope, $http, $state, $stateParams) {
   this.showList = showList;
   this.postNewList = postNewList;
   this.deleteList = deleteList;
+  this.editList = editList;
 
 
   // state changes
@@ -61,6 +62,23 @@ function HomeController($scope, $http, $state, $stateParams) {
         console.log(response)
         if (response.status == 200) {
           self.lists = response.data.lists
+        }
+      })
+  }
+
+  function editList() {
+    console.log('editing list');
+    console.log($stateParams.listId)
+    console.log(self.title);
+    const data = { title: self.title }
+    console.log(data);
+    $http.put(`${server}/lists/${$stateParams.listId}`, data)
+      .then(response => {
+        console.log(response);
+        self.title = "";
+        if (response.status == 200) {
+          console.log('changing list')
+          self.list = response.data;
         }
       })
   }
