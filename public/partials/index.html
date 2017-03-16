@@ -1,7 +1,8 @@
-<div ng-init="home.goLists()">
+<div ng-init="home.goLists()" ng-controller="TodoController as todo">
   <div ng-repeat="list in home.lists" class="col-md-3">
     <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
     <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
+    <button ng-repeat="todo in list.todo" ng-click="">Finished todo</button>
     <button ng-click="home.deleteList(list.list.id)">Delete</button>
   </div>
 </div>

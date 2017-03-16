@@ -1,6 +1,6 @@
 function HomeController($scope, $http, $state, $stateParams) {
-  var self = this;
-  var server = 'http://localhost:3000'
+  const self = this;
+  const server = 'http://localhost:3000';
 
   // Variables
   this.lists = "";
@@ -68,10 +68,7 @@ function HomeController($scope, $http, $state, $stateParams) {
 
   function editList() {
     console.log('editing list');
-    console.log($stateParams.listId)
-    console.log(self.title);
     const data = { title: self.title }
-    console.log(data);
     $http.put(`${server}/lists/${$stateParams.listId}`, data)
       .then(response => {
         console.log(response);
