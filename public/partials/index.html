@@ -2,8 +2,8 @@
   <div ng-repeat="list in home.lists" class="col-md-3">
     <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
     <div ng-repeat="todo in list.todo" class="text-center">
-      {{todo.text}}
-      <button ng-click="todoc.showTodo(todo.id)">Finished todo</button>
+      <p ng-click="todoc.goTodo(list.list.id, todo.id)">{{todo.text}}</p>
+      <button ng-click="todoc.deleteTodo(todo.id)">Finished todo</button>
     </div>
  <!--    <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
     <button ng-repeat="todo in list.todo" ng-click="todo.showTodo()">Finished todo</button> -->

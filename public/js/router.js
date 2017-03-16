@@ -21,6 +21,10 @@ function appRouter ($stateProvider, $urlRouterProvider, $locationProvider) {
   .state('showList', {
     url: '/lists/{listId}',
     templateUrl: '/partials/lists/show.html',
+  })
+  .state('showTodo', {
+    url: '/lists/{listId}/todo/{todoId}',
+    templateUrl: '/partials/todos/show.html'
   });
 
 }

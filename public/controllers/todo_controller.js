@@ -3,11 +3,23 @@ function TodoController($scope, $http, $state, $stateParams) {
   const self = this;
   const server = 'http://localhost:3000';
 
-  this.showTodo = showTodo;
 
-  function showTodo(todoId) {
-    console.log('showTodo')
+
+  this.deleteTodo = deleteTodo;
+
+  this.goTodo = goTodo;
+
+  function deleteTodo(todoId) {
+    console.log('deleteTodo')
     console.log(todoId);
+  }
+
+
+  function goTodo(listId, todoId) {
+    console.log('show todo')
+    console.log(listId);
+    console.log(todoId);
+    $state.go('showTodo', { listId: listId, todoId: todoId });
   }
 
 }
