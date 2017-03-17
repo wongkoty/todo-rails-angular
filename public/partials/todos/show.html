@@ -1,1 +1,8 @@
-todo show
+<div ng-init="todoc.getTodo()" ng-controller="TodoController as todoc">
+  <p class="text-center">{{todoc.todo.text}}</p>
+  <form ng-submit="todoc.editTodo()" class="text-center">
+    <label for="text">New Todo Name</label>
+    <input type="text" name="text" ng-model="todoc.text">
+    <button type="submit">Edit todo</button>
+  </form>
+</div>
