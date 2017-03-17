@@ -39,6 +39,13 @@ function TodoController($scope, $http, $state, $stateParams) {
   function deleteTodo(todoId) {
     console.log('deleteTodo')
     console.log(todoId);
+    $http.delete(`${server}/todos/${todoId}`)
+      .then(response => {
+        console.log(response)
+        if (response.status == 200) {
+          self.lists = response.data.lists
+        }
+      })
   }
 
 
