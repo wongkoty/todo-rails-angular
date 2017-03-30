@@ -1,4 +1,4 @@
-function TodoController($scope, $http, $state, $stateParams) {
+function TodoController($scope, $rootScope, $http, $state, $stateParams) {
   console.log('todo controller')
   const self = this;
   const server = 'http://localhost:3000';
@@ -8,6 +8,7 @@ function TodoController($scope, $http, $state, $stateParams) {
 
   this.getTodo = getTodo;
   this.editTodo = editTodo;
+  this.newTodo = newTodo;
   this.deleteTodo = deleteTodo;
 
   // State changers
@@ -16,7 +17,7 @@ function TodoController($scope, $http, $state, $stateParams) {
   function getTodo(){
     console.log($stateParams.todoId)
     $http.get(`${server}/todos/${$stateParams.todoId}`)
-      .then(function(response){
+      .then(response => {
         console.log(response);
         self.todo = response.data;
       })
@@ -32,8 +33,24 @@ function TodoController($scope, $http, $state, $stateParams) {
         if (response.status == 200) {
           console.log('changing list')
           self.todo = response.data;
+          self.text = "";
         }
       })
+  }
+
+  function newTodo(listId) {
+    console.log('new todo');
+    console.log(listId)
+    console.log(this.text[listId])
+    const data = {text: this.text[listId], list_id: listId}
+    $http.post(`${server}/todos/`, data)
+      .then(response => {
+        console.log(response)
+        if (response.status == 201) {
+          $rootScope.$broadcast('newTodo', response)
+        }
+      })
+
   }
 
   function deleteTodo(todoId) {
@@ -43,7 +60,8 @@ function TodoController($scope, $http, $state, $stateParams) {
       .then(response => {
         console.log(response)
         if (response.status == 200) {
-          self.lists = response.data.lists
+          console.log(response)
+          $rootScope.$broadcast('deleteTodo', response)
         }
       })
   }

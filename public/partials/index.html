@@ -1,16 +1,25 @@
 <div ng-init="home.goLists()" ng-controller="TodoController as todoc">
-  <div ng-repeat="list in home.lists" class="col-md-3">
+  <div ng-repeat="list in home.lists" class="col-md-3 list-container">
+    <div class="clearfix" ng-if="$index % 4 == 0"></div>
     <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
-    <div ng-repeat="todo in list.todo" class="text-center">
-      <p ng-click="todoc.goTodo(list.list.id, todo.id)">{{todo.text}}</p>
-      <button ng-click="todoc.deleteTodo(todo.id)">Finished todo</button>
+    <h2 >{{$index}}</h2>
+
+    <div class="todos-container">
+      <div ng-repeat="todo in list.todo" class="text-center">
+        <p class="todo-delete" ng-click="todoc.goTodo(list.list.id, todo.id)">{{todo.text}}</p>
+        <input type="checkbox" ng-click="todoc.deleteTodo(todo.id)">
     </div>
- <!--    <p ng-repeat="todo in list.todo" class="text-center">{{todo.text}}</p>
-    <button ng-repeat="todo in list.todo" ng-click="todo.showTodo()">Finished todo</button> -->
-    <button ng-click="home.deleteList(list.list.id)">Delete</button>
+  
+    </div>
+    <form ng-submit="todoc.newTodo(list.list.id)" class="text-center">
+      <label for="text">New Todo Name</label>
+      <input type="text" name="text" ng-model="todoc.text[list.list.id]">
+      <button type="submit" class="btn btn-default btn-xs">New Todo</button>
+    </form>
+    <button ng-click="home.deleteList(list.list.id)" class="list-delete btn btn-danger btn-s">Delete {{list.list.title}}</button>
   </div>
 </div>
 
-<div>
+<div class="text-center row">
   <button ng-click="home.goNewList()">Add a list</button>
 </div>

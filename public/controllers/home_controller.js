@@ -22,6 +22,16 @@ function HomeController($scope, $http, $state, $stateParams) {
   this.goLists = goLists;
   this.goNewList = goNewList;
 
+  $scope.$on('newTodo', (event, data) => {
+    console.log(data)
+    this.lists = data.data;
+  })
+
+  $scope.$on('deleteTodo', (event, data) => {
+    console.log(data)
+    this.lists = data.data;
+  })
+
   function getLists() {
     console.log('getLists')
     $http.get(`${server}/lists`)
