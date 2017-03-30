@@ -16,3 +16,6 @@ h2:hover {
   overflow: auto;
   max-height: 180px;
 }
+.list-container:nth-child(5n) {
+  clear: left;
+}
