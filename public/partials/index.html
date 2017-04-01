@@ -1,7 +1,6 @@
 <div ng-init="home.goLists()" ng-controller="TodoController as todoc" class="row">
-  <div ng-repeat="list in home.lists" class="col-md-3 list-container">
+  <div ng-repeat="list in home.lists" class="col-md-3 list-container text-center">
     <h2 class="text-center" ng-click="home.goList(list.list.id)">{{list.list.title}}</h2>
-    <h2 >{{$index}}</h2>
 
     <div class="todos-container">
       <div ng-repeat="todo in list.todo" class="text-center">
@@ -15,7 +14,7 @@
       <input type="text" name="text" ng-model="todoc.text[list.list.id]">
       <button type="submit" class="btn btn-default btn-xs">New Todo</button>
     </form>
-    <button ng-click="home.deleteList(list.list.id)" class="list-delete btn btn-danger btn-s">Delete {{list.list.title}}</button>
+    <button ng-click="home.deleteList(list.list.id)" class="btn btn-danger btn-s">Delete {{list.list.title}}</button>
 
   </div>
       
